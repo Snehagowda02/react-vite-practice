@@ -40,7 +40,7 @@ function App() {
               label="From"
               amount={amount}
               currencyOption={Options}
-              onCurrencyChange= {(currency) => setAmount(currency)}
+              onCurrencyChange= {(currency) => setFrom(currency)}
               selectCurrency={from}  
               onAmountChange={(amount) =>{setAmount(amount)}}
                  
@@ -51,6 +51,13 @@ function App() {
             type='button'
             className='absolute border-white rounded-md bg-blue-600'
             onClick={swap} // give reference
+
+          // this is also used  then we need to pass parameter, defining function to call another function
+         //kind of wrapper function
+//          ✔ Creates a wrapper function
+// ✔ That wrapper calls swap()
+// ✔ Used when you want to pass arguments
+         //  onClick={() => swap()}
             >  
               Swap
             </button>

@@ -40,6 +40,12 @@ export default function InputBox({
           {/* <option value="usd">
             usd
           </option> */}
+          {/* onCurrencyChange && onCurrencyChange(e.target.value)
+
+            This is a safe check.
+            It means:
+               If onCurrencyChange function exists,
+             then call it with the value from the dropdown. */}
           {currencyOption.map((currency) => (
             // to increase the performance inside loop to repeat performance 
             // remeber key in loops in react 
