@@ -5,7 +5,8 @@ import Footer from "./Footer/Footer";
 import About from "./About/About";
 import User from "./User/User";
 import Github from "./Github/Github";
+import { githubInfoLoader } from "./Github/Github";
 
-export {Header, Home, Footer, About, User, Github}
+export {Header, Home, Footer, About, User, Github, githubInfoLoader}
 
 export { default as Contact } from "./Contact/Contact"; //  both import is working 
