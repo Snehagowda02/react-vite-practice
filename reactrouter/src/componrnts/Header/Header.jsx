@@ -72,6 +72,24 @@ export default function Header() {
                                     >
                                         Contact Us
                             </NavLink>
+                            </li>
+                            <li> 
+
+                             <NavLink
+                                to="/user"
+                                className={({ isActive }) =>
+                                    isActive ? "text-orange-700 font-bold" : "text-gray-700"
+                                }
+                                >
+                                User
+                                </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/github"
+                            className={({isActive}) => isActive? "text-orange-700": "text-gray-700"}>
+                                GitHub
+                            </NavLink>
+
                         </li>
 
                     </ul>
