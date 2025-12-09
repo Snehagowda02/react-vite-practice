@@ -2,15 +2,15 @@
 // generic name children 
 
 import { useState } from "react"
-import AppConext from "./AppContext"
+import AppContext from "./AppContext"
 
 const AppContextProvider = ({children}) => {
     const [user, setUser] = useState("")
 
     return(
-        <AppConext.Provider value={{user, setUser}}>
+        <AppContext.Provider value={{user, setUser}}>
             {children}
-        </AppConext.Provider>
+        </AppContext.Provider>
     )
 }
 export default AppContextProvider
