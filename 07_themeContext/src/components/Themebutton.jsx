@@ -4,6 +4,7 @@ export default function ThemeBtn() {
     
  const {lightTheme, darkTheme, themeMode} = useTheme()
 
+ // when to set theme is here in themeButton
  const onChngeBtn = (e) => {
     const darkModeStatus = e.currentTarget.checked
     if(darkModeStatus) {darkTheme()}

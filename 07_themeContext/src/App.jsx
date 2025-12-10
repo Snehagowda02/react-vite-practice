@@ -4,6 +4,8 @@ import { ThemeContextProvider } from './context/theme'
 import ThemeBtn from './components/Themebutton'
 import Card from './components/Card'
 
+
+// what to set for theme it is here in App and where to set is here
 function App() {
 
   const [themeMode, setThemeMode] = useState("light")
