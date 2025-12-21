@@ -1,34 +1,51 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useEffect } from 'react'
+import TodoForm from './components/TodoForm'
+import TodoItem from './components/TodoItem'
+import { TodoContextProvider , TodoContext} from './context/TodoContext'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // need lazy initialization here to work with localStorage
+  //this localStorage always return and takes values in string so need to parse to json or string
+  const [todos, setTodos] = useState(() => {
+    const storedTodos = localStorage.getItem("todos")
+    return storedTodos? JSON.parse(storedTodos): []
+  })
+  // for you are not getting todoMsg insted you are getting todoObj
+  const addTodo = (todoObj) => {
+    setTodos((prev) => [ {id: Date.now(),...todoObj}  , ...prev])
+  }
+  const updateTodo = (id, todoObj) => {
+    setTodos((prev)=> prev.map((eachTodo) => (eachTodo.id === id? todoObj : eachTodo)))
+  }
+  const deleteTodo = (id) => {
+    setTodos((prev) => prev.filter((eachTodo) => eachTodo.id != id))
+  }
+  const toggleCompleted = (id) => {
+    setTodos((prev)=> prev.map((eachTodo)=> eachTodo.id === id ? 
+    {...eachTodo, completed : !eachTodo.completed} 
+    : eachTodo))
+  }
+
+  useEffect(()=> {
+  localStorage.setItem("todos", JSON.stringify(todos))
+  }, [todos])
+
 
   return (
-    <>
+    <TodoContextProvider value= {{todos, addTodo, deleteTodo, updateTodo, toggleCompleted}}>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <TodoForm />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <div>
+      {todos.map((todo) => (
+        <div key={todo.id}>
+          <TodoItem todoObj={todo}/>
+          </div>
+      ))}
+      </div>    
+    </TodoContextProvider>
   )
 }
 
