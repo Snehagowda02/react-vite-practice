@@ -74,7 +74,12 @@ function App() {
                         <TodoForm />
                     </div>
                     <div className="flex flex-wrap gap-y-3">
-                        {/*Loop and Add TodoItem here */}
+                      
+                        {/* for every loop there'll be div, 
+                        how can we differ one div from another-- that is based on todo id
+                        so use that as key */}
+                        key = here give some unique ids, sometimes id may come from db , that can also be used
+
                         {todos.map((todo) => (
                           <div key={todo.id}
                           >
